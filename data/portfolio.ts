@@ -3,7 +3,6 @@ export const personalInfo = {
   title: "Developer",
   description: "어려움 속에서도 방법을 찾는 신입 개발자",
   email: "chhajun01@naver.com",
-  phone: "010-4189-5743",
   github: "https://github.com/hajun13",
   birthDate: "2001.02.25",
   age: 25,
