@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "정하준",
-  title: "Frontend Developer",
+  title: "Developer",
   description: "어려움 속에서도 방법을 찾는 신입 개발자",
   email: "chhajun01@naver.com",
   phone: "010-4189-5743",
@@ -89,6 +89,21 @@ export const skills = [
 export const projects = [
   {
     id: 1,
+    title: "신체 불균형 탐지 프로젝트",
+    period: "2024.05 ~ 2024.07",
+    description: "딥러닝과 컴퓨터 비전 기술을 활용하여 사람의 신체 불균형을 자동으로 탐지하고 분석하는 AI 기반 헬스케어 프로젝트입니다.",
+    tech: ["Python", "PyTorch", "OpenCV", "MediaPipe", "NumPy", "Matplotlib"],
+    highlights: [
+      "OpenCV와 MediaPipe를 활용한 실시간 자세 인식",
+      "CNN 기반 딥러닝 모델 설계 및 학습",
+      "신체 불균형 지표 계산 알고리즘 구현",
+      "Matplotlib을 활용한 분석 결과 시각화",
+      "학술 논문 작성 완료"
+    ],
+    image: "/projects/posture.png"
+  },
+  {
+    id: 2,
     title: "(주)에이리스 홈페이지",
     period: "2025.07 ~ 2025.08",
     description: "Next.js 15와 최신 웹 기술을 활용한 풀스택 포트폴리오 웹사이트로, 실시간 데이터 관리와 반응형 디자인을 통해 전문적인 비즈니스 소개 플랫폼을 구축했습니다.",
@@ -103,7 +118,7 @@ export const projects = [
     image: "/projects/aeriis.png"
   },
   {
-    id: 2,
+    id: 3,
     title: "풀스택 웹앱 PrayNote",
     period: "2025.06 ~ 2025.08",
     description: "개인의 기도 생활을 체계적으로 관리하고 영적 성장을 추적할 수 있는 풀스택 웹 애플리케이션입니다.",
@@ -120,7 +135,7 @@ export const projects = [
     image: "/projects/praynote.png"
   },
   {
-    id: 3,
+    id: 4,
     title: "ECOTRA 기업 웹사이트",
     period: "2025.02 ~ 2025.03",
     description: "친환경 에너지 솔루션 전문 기업의 공식 웹사이트로, 관리자가 콘텐츠를 직접 관리할 수 있는 풀스택 웹 애플리케이션입니다.",
@@ -137,7 +152,7 @@ export const projects = [
     image: "/projects/ecotra.png"
   },
   {
-    id: 4,
+    id: 5,
     title: "UCON ENERGY 기업 웹사이트",
     period: "2025.05 ~ 2025.06",
     description: "에너지 솔루션 기업의 브랜드 이미지와 사업 영역을 효과적으로 전달하기 위한 다국어 지원 기업형 웹 애플리케이션입니다.",
@@ -154,7 +169,7 @@ export const projects = [
     image: "/projects/ucon.png"
   },
   {
-    id: 5,
+    id: 6,
     title: "미니 나스 EasyCloud",
     period: "2025.04 ~ 2025.05",
     description: "라즈베리파이를 개인 클라우드 서버로 활용하여 P2P 기술로 파일을 안전하게 공유할 수 있는 크로스 플랫폼 모바일 애플리케이션입니다.",
@@ -167,21 +182,6 @@ export const projects = [
       "JWT 기반 보안 인증 시스템"
     ],
     image: "/projects/easycloud.png"
-  },
-  {
-    id: 6,
-    title: "신체 불균형 탐지 프로젝트",
-    period: "2024.05 ~ 2024.07",
-    description: "딥러닝과 컴퓨터 비전 기술을 활용하여 사람의 신체 불균형을 자동으로 탐지하고 분석하는 AI 기반 헬스케어 프로젝트입니다.",
-    tech: ["Python", "PyTorch", "OpenCV", "MediaPipe", "NumPy", "Matplotlib"],
-    highlights: [
-      "OpenCV와 MediaPipe를 활용한 실시간 자세 인식",
-      "CNN 기반 딥러닝 모델 설계 및 학습",
-      "신체 불균형 지표 계산 알고리즘 구현",
-      "Matplotlib을 활용한 분석 결과 시각화",
-      "학술 논문 작성 완료"
-    ],
-    image: "/projects/posture.png"
   }
 ];
 
