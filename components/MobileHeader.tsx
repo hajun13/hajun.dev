@@ -31,9 +31,15 @@ export function MobileHeader() {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    // 먼저 overflow를 해제하고 메뉴를 닫음
+    document.body.style.overflow = 'unset';
     setIsOpen(false);
+    
+    // 약간의 지연 후 스크롤 실행 (메뉴 닫힘 애니메이션 완료 후)
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   // 메뉴 열릴 때 body 스크롤 방지
