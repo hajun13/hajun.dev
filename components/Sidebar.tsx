@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/portfolio";
-import { Github, Mail, Phone, Moon, Sun, Download } from "lucide-react";
+import { Github, Mail, Moon, Sun, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const navItems = [
@@ -15,14 +14,19 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+// SSR/CSR 상태 체크를 위한 유틸
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function Sidebar() {
   const [activeSection, setActiveSection] = useState("");
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  
+  // hydration 안전한 마운트 체크
+  const mounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    setMounted(true);
-
     const handleScroll = () => {
       const sections = navItems.map(item => document.querySelector(item.href));
       const scrollPosition = window.scrollY + 200;
@@ -108,13 +112,6 @@ export function Sidebar() {
               <Mail className="w-5 h-5" />
               <span className="text-sm">{personalInfo.email}</span>
             </a>
-            <a
-              href={`tel:${personalInfo.phone}`}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="text-sm">{personalInfo.phone}</span>
-            </a>
           </div>
 
           {/* Actions */}
@@ -136,7 +133,3 @@ export function Sidebar() {
     </aside>
   );
 }
-
-
-
-

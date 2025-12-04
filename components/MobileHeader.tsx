@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun, Github, Mail, Phone, Download } from "lucide-react";
+import { Menu, X, Moon, Sun, Github, Mail, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import { personalInfo } from "@/data/portfolio";
 
@@ -147,13 +147,6 @@ export function MobileHeader() {
                   >
                     <Mail className="w-4 h-4" />
                     Email
-                  </a>
-                  <a
-                    href={`tel:${personalInfo.phone}`}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                  >
-                    <Phone className="w-4 h-4" />
-                    Phone
                   </a>
                 </div>
 

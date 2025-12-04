@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/portfolio";
-import { Mail, Github, Phone } from "lucide-react";
+import { Mail, Github } from "lucide-react";
 
 export function ContactSection() {
   return (
@@ -33,16 +33,6 @@ export function ContactSection() {
             <div>
               <p className="text-xs text-muted-foreground">Email</p>
               <p className="text-sm font-medium">{personalInfo.email}</p>
-            </div>
-          </a>
-          <a
-            href={`tel:${personalInfo.phone}`}
-            className="flex items-center gap-3 p-4 border rounded-lg"
-          >
-            <Phone className="w-5 h-5" />
-            <div>
-              <p className="text-xs text-muted-foreground">Phone</p>
-              <p className="text-sm font-medium">{personalInfo.phone}</p>
             </div>
           </a>
           <a
