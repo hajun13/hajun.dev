@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun, Github, Mail, Phone, Download } from "lucide-react";
@@ -15,14 +15,21 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+// SSR/CSR 상태 체크를 위한 유틸
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  
+  // hydration 안전한 마운트 체크
+  const mounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
 
+  // 스크롤 이벤트 핸들러
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -30,29 +37,27 @@ export function MobileHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    // 먼저 overflow를 해제하고 메뉴를 닫음
-    document.body.style.overflow = 'unset';
-    setIsOpen(false);
-    
-    // 약간의 지연 후 스크롤 실행 (메뉴 닫힘 애니메이션 완료 후)
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
-
   // 메뉴 열릴 때 body 스크롤 방지
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
+
+  const scrollToSection = useCallback((href: string) => {
+    setIsOpen(false);
+    
+    // useEffect에서 overflow가 해제된 후 스크롤 실행
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  }, []);
 
   if (!mounted) return null;
 
