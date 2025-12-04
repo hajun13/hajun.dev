@@ -14,8 +14,8 @@ export default function Home() {
       <MobileHeader />
       
       <main className="lg:ml-96">
-        <div className="container mx-auto px-4 lg:px-12 max-w-5xl">
-          <div className="lg:pt-0 pt-16">
+        <div className="px-5 sm:px-8 lg:px-12 max-w-4xl lg:max-w-5xl mx-auto">
+          <div className="pt-16 lg:pt-0">
             <HeroSection />
             <AboutSection />
             <ExperienceSection />

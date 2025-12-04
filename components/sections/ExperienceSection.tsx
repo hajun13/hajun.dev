@@ -18,32 +18,32 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-16 lg:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold mb-8">Experience</h2>
+        <h2 className="text-2xl lg:text-3xl font-bold mb-6 lg:mb-8">Experience</h2>
         
-        <div className="space-y-8">
+        <div className="space-y-6 lg:space-y-8">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 pb-8 border-l-2 border-border last:border-l-0 last:pb-0">
+            <div key={index} className="relative pl-6 lg:pl-8 pb-6 lg:pb-8 border-l-2 border-border last:border-l-0 last:pb-0">
               <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-foreground" />
               
-              <div className="space-y-3">
+              <div className="space-y-2 lg:space-y-3">
                 <div>
-                  <h3 className="text-xl font-semibold">{exp.role}</h3>
-                  <p className="text-muted-foreground">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{exp.period}</p>
+                  <h3 className="text-lg lg:text-xl font-semibold">{exp.role}</h3>
+                  <p className="text-sm lg:text-base text-muted-foreground">{exp.company}</p>
+                  <p className="text-xs lg:text-sm text-muted-foreground mt-1">{exp.period}</p>
                 </div>
                 
-                <p className="text-muted-foreground">{exp.description}</p>
+                <p className="text-sm lg:text-base text-muted-foreground">{exp.description}</p>
                 
-                <ul className="space-y-2 pt-2">
+                <ul className="space-y-1.5 lg:space-y-2 pt-2">
                   {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex gap-3 text-sm text-muted-foreground">
+                    <li key={i} className="flex gap-2 lg:gap-3 text-xs lg:text-sm text-muted-foreground">
                       <span>·</span>
                       <span>{achievement}</span>
                     </li>
@@ -54,11 +54,11 @@ export function ExperienceSection() {
           ))}
 
           {/* Scholarship */}
-          <div className="relative pl-8 border-l-2 border-border">
+          <div className="relative pl-6 lg:pl-8 border-l-2 border-border">
             <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-foreground" />
             <div>
-              <h3 className="text-xl font-semibold">국가우수이공계 장학생</h3>
-              <p className="text-sm text-muted-foreground mt-1">2024.03 - Present</p>
+              <h3 className="text-lg lg:text-xl font-semibold">국가우수이공계 장학생</h3>
+              <p className="text-xs lg:text-sm text-muted-foreground mt-1">2024.03 - Present</p>
             </div>
           </div>
         </div>
@@ -66,5 +66,3 @@ export function ExperienceSection() {
     </section>
   );
 }
-
-

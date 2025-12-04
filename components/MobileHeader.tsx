@@ -36,92 +36,126 @@ export function MobileHeader() {
     setIsOpen(false);
   };
 
+  // 메뉴 열릴 때 body 스크롤 방지
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   if (!mounted) return null;
 
   return (
-    <header className={`lg:hidden fixed top-0 left-0 right-0 z-50 transition-all ${
-      scrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
-    }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <h1 className="text-xl font-bold">{personalInfo.name}</h1>
-          
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X /> : <Menu />}
-            </Button>
+    <>
+      {/* Header */}
+      <header className={`lg:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/95 backdrop-blur-md border-b" : "bg-background"
+      }`}>
+        <div className="px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-bold">{personalInfo.name}</h1>
+              <p className="text-xs text-muted-foreground">{personalInfo.title}</p>
+            </div>
+            
+            <div className="flex items-center gap-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-9 w-9"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-9 w-9"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
+      {/* Full Screen Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="bg-background border-t"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-0 z-40 bg-background"
           >
-            <div className="container mx-auto px-4 py-6">
-              <nav className="space-y-4 mb-6">
-                {navItems.map((item) => (
-                  <button
+            <div className="h-full flex flex-col pt-20 px-6 pb-8">
+              {/* Navigation */}
+              <nav className="flex-1 flex flex-col justify-center -mt-20">
+                {navItems.map((item, index) => (
+                  <motion.button
                     key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left py-2 font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="py-4 text-left text-3xl font-bold text-foreground hover:text-muted-foreground transition-colors"
                   >
                     {item.name}
-                  </button>
+                  </motion.button>
                 ))}
               </nav>
 
-              <div className="space-y-3 pt-6 border-t">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground"
-                >
-                  <Github className="w-5 h-5" />
-                  <span className="text-sm">GitHub</span>
-                </a>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-3 text-muted-foreground"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span className="text-sm">{personalInfo.email}</span>
-                </a>
-                <a
-                  href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-3 text-muted-foreground"
-                >
-                  <Phone className="w-5 h-5" />
-                  <span className="text-sm">{personalInfo.phone}</span>
-                </a>
-              </div>
+              {/* Bottom Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+                className="space-y-6 pt-8 border-t"
+              >
+                {/* Contact Info */}
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </a>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email
+                  </a>
+                  <a
+                    href={`tel:${personalInfo.phone}`}
+                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <Phone className="w-4 h-4" />
+                    Phone
+                  </a>
+                </div>
 
-              <Button className="w-full mt-6" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Resume
-              </Button>
+                {/* Resume Button */}
+                <Button className="w-full" size="lg">
+                  <Download className="w-4 h-4 mr-2" />
+                  Resume 다운로드
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
-
-
