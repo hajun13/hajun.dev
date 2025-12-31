@@ -18,23 +18,13 @@ export function ContactSection() {
         <div>
           <h2 className="text-2xl lg:text-3xl font-bold mb-3 lg:mb-4">Get In Touch</h2>
           <p className="text-base lg:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            새로운 프로젝트나 기회에 대해 이야기 나누고 싶습니다. 
+            새로운 프로젝트나 기회에 대해 이야기 나누고 싶습니다.
             언제든지 편하게 연락주세요.
           </p>
         </div>
 
         {/* Contact Info - Mobile optimized */}
         <div className="space-y-3 lg:hidden">
-          <a
-            href={`mailto:${personalInfo.email}`}
-            className="flex items-center gap-3 p-4 border rounded-lg"
-          >
-            <Mail className="w-5 h-5" />
-            <div>
-              <p className="text-xs text-muted-foreground">Email</p>
-              <p className="text-sm font-medium">{personalInfo.email}</p>
-            </div>
-          </a>
           <a
             href={personalInfo.github}
             target="_blank"

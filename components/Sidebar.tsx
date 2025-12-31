@@ -105,13 +105,6 @@ export function Sidebar() {
               <Github className="w-5 h-5" />
               <span className="text-sm">GitHub</span>
             </a>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              <span className="text-sm">{personalInfo.email}</span>
-            </a>
           </div>
 
           {/* Actions */}

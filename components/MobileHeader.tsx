@@ -16,7 +16,7 @@ const navItems = [
 ];
 
 // SSR/CSR 상태 체크를 위한 유틸
-const emptySubscribe = () => () => {};
+const emptySubscribe = () => () => { };
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
@@ -24,7 +24,7 @@ export function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
-  
+
   // hydration 안전한 마운트 체크
   const mounted = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
 
@@ -51,7 +51,7 @@ export function MobileHeader() {
 
   const scrollToSection = useCallback((href: string) => {
     setIsOpen(false);
-    
+
     // useEffect에서 overflow가 해제된 후 스크롤 실행
     setTimeout(() => {
       const element = document.querySelector(href);
@@ -64,16 +64,15 @@ export function MobileHeader() {
   return (
     <>
       {/* Header */}
-      <header className={`lg:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b" : "bg-background"
-      }`}>
+      <header className={`lg:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-md border-b" : "bg-background"
+        }`}>
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-lg font-bold">{personalInfo.name}</h1>
               <p className="text-xs text-muted-foreground">{personalInfo.title}</p>
             </div>
-            
+
             <div className="flex items-center gap-1">
               <Button
                 variant="ghost"
@@ -140,13 +139,6 @@ export function MobileHeader() {
                   >
                     <Github className="w-4 h-4" />
                     GitHub
-                  </a>
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Email
                   </a>
                 </div>
 
